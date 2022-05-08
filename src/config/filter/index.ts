@@ -1,9 +1,9 @@
 import {
-ArgumentsHost,
-Catch,
-ExceptionFilter,
-HttpException,
-HttpStatus,
+    ArgumentsHost,
+    Catch,
+    ExceptionFilter,
+    HttpException,
+    HttpStatus,
 } from '@nestjs/common';
 import { LoggerService } from '../logger/logger.service';
 import { IError } from './interfaces/error';
