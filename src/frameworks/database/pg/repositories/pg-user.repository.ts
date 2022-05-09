@@ -1,11 +1,12 @@
-import { IPlayerRepository } from "../core/abstracts/player-repository.abstract";
+import { IUserRepository } from "../core/abstracts/user-repository.abstract";
 import { PgGenericRepository } from "./pg-generic.repository";
 
-export class PgPlayerRepository<T> 
+export class PgUserRepository<T> 
     extends PgGenericRepository<T>
-    implements IPlayerRepository<T>
+    implements IUserRepository<T>
 {
-    public findByPlayerName(nickname: string): Promise<T> {
+   
+    public findByUserName(nickname: string): Promise<T> {
         return this._repository.findOne({ where: { nickname }});
     };
 
