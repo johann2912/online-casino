@@ -1,7 +1,10 @@
-import { User } from "src/frameworks/database/pg/entities";
 import { Roles } from "src/lib/enum/roles/roles.enum";
 
-export interface IUserCreate {
+export interface IUser {
+    id?:string
+    createAt?: Date;
+    updateAt?: Date;
+    deleteAt?: Date;
     nickname: string;
     email: string;
     password: string;
