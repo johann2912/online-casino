@@ -14,4 +14,34 @@ export class RedisService {
     this.tedis = new Tedis(redis);
     this.logger.log('Redis connection established');
   };
+  private generateSessionKey = (type: string, key: string) => `${type}:${key}`;
+  getSessionValue = async (type: string, key: string) => {
+    const redisKey = this.generateSessionKey(type, key);
+    this.logger.log(`Getting session key -> ${redisKey}`);
+    return await this.tedis.get(redisKey);
+  };
+  setSessionValue = async (
+    type: string,
+    id: string,
+    token: string,
+    expiredAt: number,
+  ) => {
+    const redisKey = this.generateSessionKey(type, id);
+    try {
+      await this.tedis.setex(redisKey, expiredAt, token);
+      this.logger.log(`New session created -> ${redisKey}`);
+    } catch (error) {
+      this.logger.error(`Error creating session ${id}`);
+      throw error;
+    }
+  };
+  deleteSessionValue = async (id: string) => {
+    const accessKey = this.generateSessionKey('access', id);
+    const refreshKey = this.generateSessionKey('refresh', id);
+    await this.tedis.del(accessKey, refreshKey);
+  };
+  existsKey = async (type: string, key: string) => {
+    const redisKey = this.generateSessionKey(type, key);
+    return await this.tedis.exists(redisKey);
+  };
 };
