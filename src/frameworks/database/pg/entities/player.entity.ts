@@ -5,7 +5,7 @@ import { Timestamp } from "./timestamp.entity";
 export class Player extends Timestamp {
     @PrimaryGeneratedColumn('uuid')
     id: string;
-    @Column({type: 'string'})
+    @Column({type: 'string', unique: true})
     nickname: string;
     @Column({type: 'string'})
     email: string;
