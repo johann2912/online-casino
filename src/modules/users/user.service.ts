@@ -11,6 +11,13 @@ export class UserService {
         private exceptions: ExceptionsService,
     ) {};
 
+    async searchUserByEmail(email:string){
+        const user = await this.databaseService.users.findByEmail(email);
+        if(!user) this.exceptions.notFoundException({
+            message: 'user does not found'
+        })
+        return user;
+    };
     async create(data:IUserCreate){
        return await this.databaseService.users.create(data);
     };

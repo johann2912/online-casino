@@ -13,12 +13,13 @@ export class UserCreateOutput implements IUserCreate {
     @Expose()
     email: string;
     @ApiProperty()
+    @Exclude()
     password: string;
     @ApiProperty()
     @Expose()
     phone: string;
     @ApiProperty()
-    @Exclude()
+    @Expose()
     credits: number;
     @ApiProperty()
     @Expose()

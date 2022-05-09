@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Post } from "@nestjs/common";
+import { Body, Controller, Get, Param, Post } from "@nestjs/common";
 import { ApiOkResponse, ApiProperty, ApiTags } from "@nestjs/swagger";
 import { plainToClass } from "class-transformer";
 import { UserCreateDto } from "./dto/create-user.dto";
@@ -12,6 +12,14 @@ import { UserService } from "./user.service";
 export class UsersController {
     constructor(private readonly userService: UserService){};
 
+    @Get('user/:email')
+    @ApiOkResponse({type: UserCreateOutput})
+    public async searchUserByEmail(
+        @Param('email') email: string,
+    ){
+        const user = await this.userService.searchUserByEmail(email);
+        return plainToClass(UserCreateOutput, user, {excludeExtraneousValues:true});
+    };
     @Post('create')
     @ApiOkResponse({type: UserCreateOutput})
     public async create(

@@ -1,4 +1,3 @@
-import { IUserCreate } from "src/modules/users/interfaces/create-user.interface";
 import { IGenericRepository } from "./generic-repository.abstract";
 
 export abstract class IUserRepository<T> extends IGenericRepository<T> {
