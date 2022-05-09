@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsNotEmpty, IsString } from "class-validator";
+import { IsEmail, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Roles } from "src/lib/enum/roles/roles.enum";
 import { IUserCreate } from "../interfaces/create-user.interface";
 
@@ -19,7 +19,10 @@ export class UserCreateDto implements IUserCreate {
     @ApiProperty()
     @IsNotEmpty()
     @IsString()
-    phone: string;    
+    phone: string;
+    @ApiProperty()
+    @IsNotEmpty()
+    @IsNumber()
     credits: number;
     @ApiProperty()
     @IsNotEmpty()

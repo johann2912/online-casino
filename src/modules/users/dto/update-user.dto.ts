@@ -1,18 +1,30 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString } from "class-validator";
+import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { Roles } from "src/lib/enum/roles/roles.enum";
 import { IUserUpdate } from "../interfaces/update-user.interface";
 
 export class UserUpdateDto implements IUserUpdate {
     @ApiProperty({required: false})
+    @IsOptional()
     @IsString()
-    nickname: string;
-     @ApiProperty({required: false})
+    nickname?: string;
+    @ApiProperty({required: false})
+    @IsOptional()
+    @IsEmail()
+    email?: string;
+    @ApiProperty({required: false})
+    @IsOptional()
     @IsString()
-    email: string;
-     @ApiProperty({required: false})
+    password?: string;
+    @ApiProperty({required: false})
+    @IsOptional()
     @IsString()
-    password: string;
-     @ApiProperty({required: false})
-    @IsString()
-    phone: string;
+    phone?: string;
+    @ApiProperty({required: false})
+    @IsOptional()
+    @IsNumber()
+    credits?: number;
+    @ApiProperty({required: false})
+    @IsOptional()
+    role?: Roles;
 };

@@ -5,10 +5,10 @@ export interface IUser {
     createAt?: Date;
     updateAt?: Date;
     deleteAt?: Date;
-    nickname: string;
-    email: string;
-    password: string;
-    phone: string;
-    credits: number;
-    role: Roles;
+    nickname?: string;
+    email?: string;
+    password?: string;
+    phone?: string;
+    credits?: number;
+    role?: Roles;
 };
