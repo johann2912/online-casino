@@ -6,7 +6,7 @@ import { Timestamp } from "./timestamp.entity";
 export class RouletteDetails extends Timestamp {
     @PrimaryGeneratedColumn('uuid')
     id?: string;
-    @Column({type: String})
+    @Column({type: String, nullable:true})
     last_winning_numbers?: string;
     @ManyToOne(
         (_type) => Roulette, roulette => roulette.roulette_details,
