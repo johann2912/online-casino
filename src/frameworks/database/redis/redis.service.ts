@@ -10,6 +10,7 @@ export class RedisService {
     let redis = {
         host: config.get<string>('REDIS_HOST_DEV'),
         port: config.get<number>('REDIS_PORT_DEV'),
+        password: config.get<string>('REDIS_PASSWORD'),
     };
     this.tedis = new Tedis(redis);
     this.logger.log('Redis connection established');
