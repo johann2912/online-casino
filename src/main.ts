@@ -22,9 +22,9 @@ async function bootstrap() {
   app.useGlobalFilters(new AllExceptionFilter(logger));
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
-  app.setGlobalPrefix('api/v1/casino/');
+  app.setGlobalPrefix('api/v1/casino/docs');
   app.use(
-    '/api/v1/casino/',
+    'api/v1/casino/docs',
     basicAuth({
       challenge: true,
       users: { masiv: configService.get<string>('SWAGGER_PASS') }

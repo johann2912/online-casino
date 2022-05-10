@@ -1,21 +1,48 @@
-import { Controller, Get, Param } from "@nestjs/common";
-import { ApiOkResponse, ApiTags } from "@nestjs/swagger";
+import { Body, Controller, Delete, Patch, Post, Session, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from "@nestjs/swagger";
 import { plainToClass } from "class-transformer";
+import { AccessGuard } from "src/lib/guards/access.guard";
+import { RefreshGuard } from "src/lib/guards/refresh.guard";
+import { IAccess } from "src/lib/jwt/interfaces/access";
+import { IRefresh } from "src/lib/jwt/interfaces/refresh";
 import { AuthService } from "./auth.service";
+import { LoginDto } from "./dto/login.dto";
+import { LogoutOutputDto } from "./dto/logout.dto";
 import { AuthOutput } from "./output/login-output";
 
-@ApiTags('auth')
-@Controller('auth')
+@ApiTags('Auth')
+@Controller('Auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) {};
 
-    @Get('login/:email/:password')
+    @Post('login')
     @ApiOkResponse({type: AuthOutput})
+    @ApiOperation({ summary: 'Sing in session' })
     async login(
-        @Param('email') email:string,
-        @Param('password') password:string,
+        @Body() data: LoginDto
     ){
-        const login = await this.authService.login(email, password);
+        const login = await this.authService.login(data);
         return plainToClass(AuthOutput, login, {excludeExtraneousValues:true});
+    };
+
+    @Patch('refresh-token')
+    @UseGuards(RefreshGuard)
+    @ApiBearerAuth()
+    @ApiOkResponse({type: AuthOutput})
+    @ApiOperation({ summary: 'Refresh session' })
+    async refresh(
+        @Session() session: { id: string },
+    ){
+        const refresh = await this.authService.refresh(session.id);  
+        return plainToClass(AuthOutput, refresh, {excludeExtraneousValues:true});
+    };
+    @ApiBearerAuth()
+    @UseGuards(AccessGuard)
+    @Delete('logout')
+    @ApiOkResponse({ type: LogoutOutputDto })
+    @ApiOperation({ summary: 'Logout session' })
+    public async logout(@Session() payload: IAccess) {
+      await this.authService.logout(payload.id);
+      return { message: 'Logout Ok' };
     };
 };

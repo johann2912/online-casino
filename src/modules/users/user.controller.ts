@@ -7,8 +7,8 @@ import { UserCreateOutput } from "./output/user-create-output";
 import { UserUpdateOutput } from "./output/user-update-output";
 import { UserService } from "./user.service";
 
-@ApiTags('user')
-@Controller('user')
+@ApiTags('Users')
+@Controller('Users')
 export class UsersController {
     constructor(private readonly userService: UserService){};
 
