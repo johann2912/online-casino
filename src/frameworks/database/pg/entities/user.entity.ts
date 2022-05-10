@@ -9,7 +9,7 @@ export class User extends Timestamp implements IUser {
     id?: string;
     @Column({type: String, nullable:true})
     nickname?: string;
-    @Column({type: String, nullable:true, unique: true})
+    @Column({type: String, nullable:true, unique:true})
     email?: string;
     @Column({type: String, nullable:true})
     password?: string;

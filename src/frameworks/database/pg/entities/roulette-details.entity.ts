@@ -5,11 +5,11 @@ import { Timestamp } from "./timestamp.entity";
 @Entity()
 export class RouletteDetails extends Timestamp {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id?: string;
     @Column({type: String})
-    last_winning_numbers: string;
+    last_winning_numbers?: string;
     @ManyToOne(
         (_type) => Roulette, roulette => roulette.roulette_details,
     )
-    roulette: Roulette;
+    roulette?: Roulette;
 };
