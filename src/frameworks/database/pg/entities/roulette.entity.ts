@@ -1,9 +1,10 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { IRoulette } from "src/modules/roulettes/interfaces/roulette.interface";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { RouletteDetails } from "./roulette-details.entity";
 import { Timestamp } from "./timestamp.entity";
 
 @Entity()
-export class Roulette extends Timestamp {
+export class Roulette extends Timestamp implements IRoulette {
     @PrimaryGeneratedColumn('uuid')
     id?: string;
     @Column({type: String, nullable:true})
