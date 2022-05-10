@@ -1,4 +1,4 @@
-import { IRoulette } from "./roulette.interface";
+import { IRoulette } from "../roulette/roulette.interface";
 
 export interface IRouletteDetails {
     id?:string;

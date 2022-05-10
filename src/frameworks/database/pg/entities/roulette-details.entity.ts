@@ -1,4 +1,4 @@
-import { IRouletteDetails } from "src/modules/roulettes/interfaces/roulette-details.interface";
+import { IRouletteDetails } from "src/modules/roulettes/interfaces/roulette-detail/roulette-details.interface";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Roulette } from "./roulette.entity";
 import { Timestamp } from "./timestamp.entity";
