@@ -4,7 +4,6 @@ import { plainToClass } from "class-transformer";
 import { AccessGuard } from "src/lib/guards/access.guard";
 import { RefreshGuard } from "src/lib/guards/refresh.guard";
 import { IAccess } from "src/lib/jwt/interfaces/access";
-import { IRefresh } from "src/lib/jwt/interfaces/refresh";
 import { AuthService } from "./auth.service";
 import { LoginDto } from "./dto/login.dto";
 import { LogoutOutputDto } from "./dto/logout.dto";
