@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
 import { ApiOkResponse, ApiProperty, ApiTags } from "@nestjs/swagger";
 import { plainToClass } from "class-transformer";
 import { UserCreateDto } from "./dto/create-user.dto";
@@ -43,4 +43,11 @@ export class UsersController {
         const user = await this.userService.update(email, data);
         return plainToClass(UserUpdateOutput, user, {excludeExtraneousValues:true});
     };
+    @Delete('delete/:email')
+    async delete(
+        @Param('email') email:string,
+    ){
+        const user = await this.userService.delete(email);
+        return plainToClass(UserUpdateOutput, user, {excludeExtraneousValues:true});
+    }
 };

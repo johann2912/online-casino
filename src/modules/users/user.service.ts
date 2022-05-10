@@ -35,6 +35,10 @@ export class UserService {
         const user = await this.validateIsExistUser(email);
         await this.databaseService.users.update(user.id, data);
     };
+    async delete(email:string){
+        const user = await this.validateIsExistUser(email);
+        await this.databaseService.users.delete(user.id);
+    }
     private async validateIsExistUser(email:string){
         const user = await this.databaseService.users.findByEmail(email);
         if(!user) this.exceptions.notFoundException({
