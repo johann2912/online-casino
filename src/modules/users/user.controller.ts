@@ -12,7 +12,13 @@ import { UserService } from "./user.service";
 export class UsersController {
     constructor(private readonly userService: UserService){};
 
-    @Get('user/:email')
+    @Get('all')
+    @ApiOkResponse({type: [UserCreateOutput]})
+    public async allUsers(){
+        const users = await this.userService.allUsers();
+        return plainToClass(UserCreateOutput, users, {excludeExtraneousValues:true});
+    };
+    @Get('by-email/:email')
     @ApiOkResponse({type: UserCreateOutput})
     public async searchUserByEmail(
         @Param('email') email: string,
