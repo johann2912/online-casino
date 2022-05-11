@@ -14,7 +14,7 @@ export class Roulette extends Timestamp implements IRoulette {
     min_bet?: number;
     @Column({type:Number, nullable:true})
     max_bet?: number;
-    @Column({type:'enum', enum:StatusRoulette, default:StatusRoulette.OPEN, nullable:true})
+    @Column({type:'enum', enum:StatusRoulette, nullable:true})
     status?:StatusRoulette;
     @ManyToOne(
         (_type) => RouletteDetails, roulette_details => roulette_details.roulette,
