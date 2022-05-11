@@ -24,5 +24,5 @@ export class Roulette extends Timestamp implements IRoulette {
     @ManyToOne(
         (_type) => Bets, bet => bet.roulette
     )
-    bet:Bets;
+    bet?:Bets;
 };

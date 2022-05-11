@@ -9,6 +9,9 @@ import { Repository } from "typeorm";
 import { PgUserRepository } from "./repositories/pg-user.repository";
 import { PgRouletteRepository } from "./repositories/pg-roulette.repository";
 import { PgRouletteDetailsRepository } from "./repositories/pg-roulette-details.repository";
+import { IBetRepository } from "./core/abstracts/bet-repository.abstrac";
+import { Bets } from "./entities/bets.entity";
+import { PgBetRepository } from "./repositories/pg-bet.repostory";
 
 @Injectable()
 export class PgDatabaseService
@@ -17,6 +20,7 @@ export class PgDatabaseService
   public users: IUserRepository<User>;
   public roulettes: IRouletteRepository<Roulette>;
   public roulettesDetails: IRouletteDetailsRepository<RouletteDetails>;
+  public bets: IBetRepository<Bets>;
 
   constructor(
     @InjectRepository(User)
@@ -25,6 +29,8 @@ export class PgDatabaseService
     private readonly rouletteRepository: Repository<Roulette>,
     @InjectRepository(RouletteDetails)
     private readonly rouletteDetailsRepository: Repository<RouletteDetails>,
+    @InjectRepository(Bets)
+    private readonly BetRepository: Repository<Bets>
   ) {};
 
   public onApplicationBootstrap() {
@@ -33,5 +39,6 @@ export class PgDatabaseService
     this.roulettesDetails = new PgRouletteDetailsRepository<RouletteDetails>(
       this.rouletteDetailsRepository
     );
+    this.bets = new PgBetRepository<Bets>(this.BetRepository);
   };
 };

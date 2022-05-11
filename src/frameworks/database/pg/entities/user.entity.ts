@@ -23,5 +23,5 @@ export class User extends Timestamp implements IUser {
     @ManyToOne(
         (_type) => Bets, bet => bet.user
     )
-    bet:Bets;
+    bet?:Bets;
 };
