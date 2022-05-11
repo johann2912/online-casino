@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Post, Session, UseGuards } from "@nestjs/common";
-import { ApiBearerAuth, ApiOkResponse, ApiProperty, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiOkResponse, ApiTags } from "@nestjs/swagger";
 import { plainToClass } from "class-transformer";
 import { AccessGuard } from "src/lib/guards/access.guard";
 import { IAccess } from "src/lib/jwt/interfaces/access";

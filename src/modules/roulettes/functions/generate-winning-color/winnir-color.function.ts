@@ -1,5 +1,4 @@
 import { ColorBet } from "src/lib/enum/color-bet/color-bet.enum";
-import { IBet } from "src/modules/bets/interfaces/bet.interface";
 
 export class WinnerColor {
     public static decideColor(winnerNumber:number){

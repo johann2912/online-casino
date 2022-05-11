@@ -1,5 +1,3 @@
-import { ColorBet } from "src/lib/enum/color-bet/color-bet.enum";
-
 export class WinningNumber {
     public static generateNumber(){
         const numberInit = 0;

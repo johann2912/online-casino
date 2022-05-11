@@ -2,8 +2,6 @@ import { Injectable } from "@nestjs/common";
 import { ExceptionsService } from "src/config/exceptions/exceptions.service";
 import { IDatabaseAbstract } from "src/frameworks/database/pg/core/abstracts/database.abstract";
 import { RedisService } from "src/frameworks/database/redis/redis.service";
-import { StatusRoulette } from "src/lib/enum/status-roulette/status-roulette.num";
-import { IRoulette } from "../roulettes/interfaces/roulette/roulette.interface";
 import { IUser } from "../users/interfaces/user.interface";
 import { CalculateNumberRange } from "./functions/number-range-roulette/number-range.function";
 import { ValidateStatusRoulette } from "./functions/status-roulette/status.function";

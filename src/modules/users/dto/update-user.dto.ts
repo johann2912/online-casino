@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsEnum, IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
+import { IsEmail, IsNumber, IsOptional, IsString } from "class-validator";
 import { Roles } from "src/lib/enum/roles/roles.enum";
 import { IUserUpdate } from "../interfaces/update-user.interface";
 

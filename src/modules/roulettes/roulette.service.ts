@@ -4,7 +4,6 @@ import { IDatabaseAbstract } from "src/frameworks/database/pg/core/abstracts/dat
 import { ColorBet } from "src/lib/enum/color-bet/color-bet.enum";
 import { Roles } from "src/lib/enum/roles/roles.enum";
 import { StatusRoulette } from "src/lib/enum/status-roulette/status-roulette.num";
-import { IBet } from "../bets/interfaces/bet.interface";
 import { IUser } from "../users/interfaces/user.interface";
 import { CreditNumberMatch } from "./functions/credit-earned-number-matched/credit-earned-matched.function";
 import { WinnerColor } from "./functions/generate-winning-color/winnir-color.function";
