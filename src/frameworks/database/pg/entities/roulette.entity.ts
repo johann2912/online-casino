@@ -1,6 +1,7 @@
 import { StatusRoulette } from "src/lib/enum/status-roulette/status-roulette.num";
 import { IRoulette } from "src/modules/roulettes/interfaces/roulette/roulette.interface";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Bets } from "./bets.entity";
 import { RouletteDetails } from "./roulette-details.entity";
 import { Timestamp } from "./timestamp.entity";
 
@@ -20,4 +21,8 @@ export class Roulette extends Timestamp implements IRoulette {
         (_type) => RouletteDetails, roulette_details => roulette_details.roulette,
     )
     roulette_details?: RouletteDetails;
+    @ManyToOne(
+        (_type) => Bets, bet => bet.roulette
+    )
+    bet:Bets;
 };

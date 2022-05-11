@@ -1,5 +1,5 @@
 import { IRouletteDetails } from "src/modules/roulettes/interfaces/roulette-detail/roulette-details.interface";
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Roulette } from "./roulette.entity";
 import { Timestamp } from "./timestamp.entity";
 
@@ -12,5 +12,6 @@ export class RouletteDetails extends Timestamp implements IRouletteDetails {
     @ManyToOne(
         (_type) => Roulette, roulette => roulette.roulette_details,
     )
+    @JoinColumn()
     roulette?: Roulette;
 };
