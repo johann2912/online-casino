@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { ColorBet } from "src/lib/enum/color-bet/color-bet.enum";
 import { Roulette } from "./roulette.entity";
 import { Timestamp } from "./timestamp.entity";
 import { User } from "./user.entity";
@@ -9,8 +10,10 @@ export class Bets extends Timestamp {
     id?: string;
     @Column({type:String, nullable:true, unique:true})
     number_bet?: string;
+    @Column({type:'enum', enum:ColorBet, nullable:true})
+    color_bet?:ColorBet;
     @Column({type:Number, nullable:true})
-    color_bet?: number;
+    credits_bets?:number;
     @ManyToOne(
         (_type) => User, user => user.bet
     )
