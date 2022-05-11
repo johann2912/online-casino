@@ -1,14 +1,15 @@
-import { Roulette, User } from "src/frameworks/database/pg/entities";
 import { ColorBet } from "src/lib/enum/color-bet/color-bet.enum";
+import { IRoulette } from "src/modules/roulettes/interfaces/roulette/roulette.interface";
+import { IUser } from "src/modules/users/interfaces/user.interface";
 
 export interface IBet {
     id?:string
     createAt?:Date;
     updateAt?:Date;
     deleteAt?:Date;
-    number_bet?: string;
+    number_bet?: number;
     color_bet?:ColorBet;
     credits_bets?:number;
-    user?:User;
-    roulette?: Roulette;
+    user?:IUser;
+    roulette?: IRoulette;
 };

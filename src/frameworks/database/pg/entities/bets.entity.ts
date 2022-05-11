@@ -9,8 +9,8 @@ import { IBet } from "src/modules/bets/interfaces/bet.interface";
 export class Bets extends Timestamp implements IBet {
     @PrimaryGeneratedColumn('uuid')
     id?: string;
-    @Column({type:String, nullable:true, unique:true})
-    number_bet?: string;
+    @Column({type:Number, nullable:true})
+    number_bet?:number;
     @Column({type:'enum', enum:ColorBet, nullable:true})
     color_bet?:ColorBet;
     @Column({type:Number, nullable:true})
