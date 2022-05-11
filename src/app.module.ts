@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { PgDatabaseModule } from './frameworks/database/pg/pg-data.module';
 import { RedisModule } from './frameworks/database/redis/redis.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { BetModule } from './modules/bets/bet.module';
 import { RouletteModule } from './modules/roulettes/roulette.module';
 import { UserModule } from './modules/users/user.module';
 
@@ -16,6 +17,7 @@ import { UserModule } from './modules/users/user.module';
     RedisModule,
     UserModule,
     AuthModule,
+    BetModule,
   ],
 })
 export class AppModule {}
