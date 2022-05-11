@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Param, Patch, Post, Session, UseGuards } from "@nestjs/common";
-import { ApiBearerAuth, ApiOkResponse, ApiTags } from "@nestjs/swagger";
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Session, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiOkResponse, ApiQuery, ApiTags } from "@nestjs/swagger";
 import { plainToClass } from "class-transformer";
+import { StatusRoulette } from "src/lib/enum/status-roulette.num";
 import { AccessGuard } from "src/lib/guards/access.guard";
 import { IAccess } from "src/lib/jwt/interfaces/access";
 import { RouletteDeletetDto } from "./dto/delete.dto";
@@ -14,6 +15,20 @@ import { RouletteService } from "./roulette.service";
 export class RouletteController {
     constructor(private readonly rouletteService:RouletteService) {};
 
+    @Get('all/:status')
+    @ApiOkResponse({type: [RouletteCreateOutputDto]})
+    @ApiQuery({
+        type:'enum', 
+        enum:StatusRoulette,
+        name:'status', 
+        required:false
+    })
+    async allRoulettes(
+        @Query('status') status:StatusRoulette
+    ){
+        const roulettes = await this.rouletteService.all(status);
+        return plainToClass(RouletteCreateOutputDto, roulettes, {excludeExtraneousValues:true});
+    }
     @Post('create')
     @UseGuards(AccessGuard)
     @ApiBearerAuth()

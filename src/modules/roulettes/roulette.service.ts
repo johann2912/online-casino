@@ -13,6 +13,14 @@ export class RouletteService {
         private exceptions: ExceptionsService,
     ) {};
 
+    async all(status?:StatusRoulette){
+        const roulettes = await this.databaseService.roulettes.findAllFilterStatus(status);
+        if(roulettes.length <= 0) this.exceptions.notFoundException({
+            message: 'roulettes does not found'
+        });
+
+        return roulettes;
+    }
     async create(session:string, data:IRouletteCreate){
         const user = await this.validateExistUser(session);
         await this.validateRolAdmin(user);
@@ -27,7 +35,7 @@ export class RouletteService {
             roulette.id, 
             {status: StatusRoulette.OPEN}
         );
-        
+
         return {
             id: roulette.id,
             status: StatusRoulette.OPEN,
