@@ -1,6 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { ExceptionsService } from "src/config/exceptions/exceptions.service";
 import { IDatabaseAbstract } from "src/frameworks/database/pg/core/abstracts/database.abstract";
+import { UserAcquireNewCreditDto } from "./dto/acquire-credit.dto";
+import { CalculateCredit } from "./functions/calculate-acquire/acquire";
 import { HashPassword } from "./functions/hashed/password";
 import { IUserCreate } from "./interfaces/create-user.interface";
 import { IUserUpdate } from "./interfaces/update-user.interface";
@@ -19,6 +21,22 @@ export class UserService {
         });
 
         return users
+    };
+    async acquireCredit(session:string, {credit_new}:UserAcquireNewCreditDto){
+        const user = await this.databaseService.users.findOne(session)
+        const newCredit =  CalculateCredit.calculateAcquireCredit(
+            user.credits,
+            credit_new,
+        );
+        await this.databaseService.users.update(user.id,{
+            credits: newCredit
+        });
+
+        return {
+            id: user.id,
+            credit_old: user.credits,
+            credit_new: newCredit,
+        };
     };
     async searchUserByEmail(email:string){
        return await this.validateIsExistUser(email);

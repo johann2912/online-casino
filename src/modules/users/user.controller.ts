@@ -1,8 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
-import { ApiOkResponse, ApiProperty, ApiTags } from "@nestjs/swagger";
+import { Body, Controller, Delete, Get, Param, Post, Session, UseGuards } from "@nestjs/common";
+import { ApiBearerAuth, ApiOkResponse, ApiProperty, ApiTags } from "@nestjs/swagger";
 import { plainToClass } from "class-transformer";
+import { AccessGuard } from "src/lib/guards/access.guard";
+import { IAccess } from "src/lib/jwt/interfaces/access";
+import { UserAcquireNewCreditDto } from "./dto/acquire-credit.dto";
 import { UserCreateDto } from "./dto/create-user.dto";
 import { UserUpdateDto } from "./dto/update-user.dto";
+import { UserAcquireCredit } from "./output/acquire-credit-output";
 import { UserCreateOutput } from "./output/user-create-output";
 import { UserUpdateOutput } from "./output/user-update-output";
 import { UserService } from "./user.service";
@@ -25,6 +29,17 @@ export class UsersController {
     ){
         const user = await this.userService.searchUserByEmail(email);
         return plainToClass(UserCreateOutput, user, {excludeExtraneousValues:true});
+    };
+    @Post('acquire-credits')
+    @UseGuards(AccessGuard)
+    @ApiBearerAuth()
+    @ApiOkResponse({type: UserAcquireCredit})
+    async acquireCredits(
+        @Session() session:IAccess,
+        @Body() credit:UserAcquireNewCreditDto,
+    ){
+        const user = await this.userService.acquireCredit(session.id, credit);
+        return plainToClass(UserAcquireCredit, user, {excludeExtraneousValues:true});
     };
     @Post('create')
     @ApiOkResponse({type: UserCreateOutput})

@@ -1,4 +1,4 @@
-import { StatusRoulette } from "src/lib/enum/status-roulette.num";
+import { StatusRoulette } from "src/lib/enum/status-roulette/status-roulette.num";
 
 export interface IRoulette {
     id?:string

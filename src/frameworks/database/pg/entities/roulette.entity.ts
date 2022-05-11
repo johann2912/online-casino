@@ -1,4 +1,4 @@
-import { StatusRoulette } from "src/lib/enum/status-roulette.num";
+import { StatusRoulette } from "src/lib/enum/status-roulette/status-roulette.num";
 import { IRoulette } from "src/modules/roulettes/interfaces/roulette/roulette.interface";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { RouletteDetails } from "./roulette-details.entity";

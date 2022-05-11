@@ -35,9 +35,9 @@ export class AuthController {
         const refresh = await this.authService.refresh(session.id);  
         return plainToClass(AuthOutput, refresh, {excludeExtraneousValues:true});
     };
-    @ApiBearerAuth()
-    @UseGuards(AccessGuard)
     @Delete('logout')
+    @UseGuards(AccessGuard)
+    @ApiBearerAuth()
     @ApiOkResponse({ type: LogoutOutputDto })
     @ApiOperation({ summary: 'Logout session' })
     public async logout(@Session() payload: IAccess) {

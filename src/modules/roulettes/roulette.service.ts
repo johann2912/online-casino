@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { ExceptionsService } from "src/config/exceptions/exceptions.service";
 import { IDatabaseAbstract } from "src/frameworks/database/pg/core/abstracts/database.abstract";
 import { Roles } from "src/lib/enum/roles/roles.enum";
-import { StatusRoulette } from "src/lib/enum/status-roulette.num";
+import { StatusRoulette } from "src/lib/enum/status-roulette/status-roulette.num";
 import { IUser } from "../users/interfaces/user.interface";
 import { IRouletteCreate } from "./interfaces/roulette/create-roulette.interface";
 
