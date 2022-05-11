@@ -23,7 +23,6 @@ export class AuthController {
         const login = await this.authService.login(data);
         return plainToClass(AuthOutput, login, {excludeExtraneousValues:true});
     };
-
     @Patch('refresh-token')
     @UseGuards(RefreshGuard)
     @ApiBearerAuth()

@@ -10,6 +10,7 @@ export interface IBet {
     number_bet?: number;
     color_bet?:ColorBet;
     credits_bets?:number;
+    realized?:boolean,
     user?:IUser;
     roulette?: IRoulette;
 };

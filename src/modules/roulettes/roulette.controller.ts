@@ -6,6 +6,7 @@ import { AccessGuard } from "src/lib/guards/access.guard";
 import { IAccess } from "src/lib/jwt/interfaces/access";
 import { RouletteDeletetDto } from "./dto/delete.dto";
 import { RouletteCreateDto } from "./dto/roulette/create-roulette.dto";
+import { RouletteCloseOutput } from "./output/roulette/close-roulette-output";
 import { RouletteCreateOutputDto } from "./output/roulette/create-roulette-output";
 import { RouletteUpdateStatusOutput } from "./output/roulette/update-status-roulette-output";
 import { RouletteService } from "./roulette.service";
@@ -54,6 +55,21 @@ export class RouletteController {
         );
         
         return plainToClass(RouletteCreateOutputDto, roulette, {excludeExtraneousValues:true});
+    };
+    @Patch('change-status-close/:rouletteId')
+    @UseGuards(AccessGuard)
+    @ApiBearerAuth()
+    @ApiOkResponse({type: RouletteCloseOutput})
+    async closeStatus(
+        @Session() session:IAccess,
+        @Param('rouletteId') rouletteId:string,
+    ){
+        const roulette = await this.rouletteService.closeStatus(
+            session.id,
+            rouletteId,
+        );
+        
+        return plainToClass(RouletteCloseOutput, roulette, {excludeExtraneousValues:true});
     };
     @Delete('delete/:rouletteId')
     @UseGuards(AccessGuard)

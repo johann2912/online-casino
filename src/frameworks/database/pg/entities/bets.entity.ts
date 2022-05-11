@@ -15,6 +15,8 @@ export class Bets extends Timestamp implements IBet {
     color_bet?:ColorBet;
     @Column({type:Number, nullable:true})
     credits_bets?:number;
+    @Column({type:Boolean, default:false})
+    realized?:boolean;
     @ManyToOne(
         (_type) => User, user => user.bet
     )

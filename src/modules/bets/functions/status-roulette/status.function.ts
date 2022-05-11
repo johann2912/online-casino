@@ -6,7 +6,7 @@ export class ValidateStatusRoulette {
     public static Status(roulette:IRoulette){
         const exceptions = new ExceptionsService();
         if(roulette.status !== StatusRoulette.OPEN) exceptions.internalServerErrorException({
-            message: `Roulette does not accept any more bets, status: ${roulette.status}`;
+            message: `Roulette does not accept any more bets, status: ${roulette.status}`
         });
     };
 };
