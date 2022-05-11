@@ -3,9 +3,10 @@ import { ColorBet } from "src/lib/enum/color-bet/color-bet.enum";
 import { Roulette } from "./roulette.entity";
 import { Timestamp } from "./timestamp.entity";
 import { User } from "./user.entity";
+import { IBet } from "src/modules/bets/interfaces/bet.interface";
 
 @Entity()
-export class Bets extends Timestamp {
+export class Bets extends Timestamp implements IBet {
     @PrimaryGeneratedColumn('uuid')
     id?: string;
     @Column({type:String, nullable:true, unique:true})
